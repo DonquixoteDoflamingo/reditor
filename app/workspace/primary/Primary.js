@@ -18,7 +18,7 @@ export default class Primary extends Component {
   render() {
     let list = this.props.right ? this.props.primary.listRight : this.props.primary.listLeft;
     let active = this.props.right ? this.props.primary.activeRight : this.props.primary.activeLeft;
-    let Component = list[active].component;
+    let Component = list[active] && list[active].component || (() => null);
     return (
       <div styleName="primary" style={{ width: this.props.width + 'px' }} data-right={this.props.right ? 'true' : 'false'}>
         <div styleName="side">

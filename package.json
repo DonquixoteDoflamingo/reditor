@@ -2,9 +2,10 @@
   "name": "reditor",
   "version": "0.0.1",
   "description": "a new editor by react",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.config.js"
+    "dev": "webpack --watch --config webpack.config.js",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "url": "https://github.com/DonquixoteDoflamingo/reditor.git",
@@ -21,11 +22,14 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.25.0",
+    "electron": "^1.4.6",
+    "electron-settings": "^2.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "font-awesome": "^4.7.0",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.24.1",
+    "json-loader": "^0.5.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "normalize.css": "^5.0.0",
@@ -39,6 +43,7 @@
     "redux-thunk": "^2.1.0",
     "resolve-url-loader": "^1.6.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.3"
+    "webpack": "^1.13.3",
+    "webpack-target-electron-renderer": "^0.4.0"
   }
 }

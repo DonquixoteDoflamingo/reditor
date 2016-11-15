@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -9,6 +10,8 @@ module.exports = {
 		path: 'dist',
 		filename: 'js/[name].js'
 	},
+  target: 'electron',
+  devtool: '#inline-source-map',
   plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
     new HtmlWebpackPlugin({
@@ -18,6 +21,7 @@ module.exports = {
       chunks: ['index'],
   		minify: false,
   	}),
+    new ExtractTextPlugin('css/[name].css'),
 	],
   module: {
 		loaders: [{
@@ -35,35 +39,31 @@ module.exports = {
 		}, {
 			test: /\.css$/,
 			exclude: /(node_modules|bower_components)/,
-			loaders: [
-        "style",
-        "css?modules&importLoaders=1&localIdentName=[path][name]-[local]",
-        "autoprefixer-loader"
-      ]
+			loader: ExtractTextPlugin.extract(
+        'style',
+        "css?modules&importLoaders=1&localIdentName=[path][name]-[local]!autoprefixer-loader"
+      )
 		}, {
 			test: /\.css$/,
       exclude: /app/,
-			loaders: [
-        "style",
-        "css",
-        "autoprefixer-loader"
-      ]
+			loader: ExtractTextPlugin.extract(
+        'style',
+        "css!autoprefixer-loader"
+      )
 		}, {
 			test: /\.less$/,
 			exclude: /(node_modules|bower_components)/,
-			loaders: [
+			loader: ExtractTextPlugin.extract(
         "style",
-        "css?modules&importLoaders=1&localIdentName=[path][name]-[local]",
-        "less"
-      ]
+        "css?modules&importLoaders=1&localIdentName=[path][name]-[local]!less"
+      )
 		}, {
 			test: /\.less$/,
 			exclude: /app/,
-			loaders: [
+			loader: ExtractTextPlugin.extract(
         "style",
-        "css",
-        "less"
-      ]
+        "css!less"
+      )
 		}, {
       test: /\.json$/,
       loader: 'json'

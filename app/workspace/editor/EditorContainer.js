@@ -23,6 +23,8 @@ export default class EditorContainer extends Component {
           <EditorTab title="test.js"/>
           <EditorTab title="test.js"/>
         </div>
+        <div styleName="editor-wrap">
+        </div>
       </div>
     );
   }
