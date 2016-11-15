@@ -3,4 +3,33 @@
 .editor-container {
   flex: 1;
   border: 1px solid @borderNormal;
+  min-width: 300px;
+  background-color: @bgContent;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid @borderNormal;
+  background-color: @bgBlur;
+}
+
+.tab-item {
+  padding: @panelHeaderPadding;
+  text-align: center;
+  background-color: @bgBlur;
+  color: @textBlur;
+  flex: 1;
+  max-width: 160px;
+  border-right: 1px solid @borderNormal;
+  position: relative;
+  box-sizing: border-box;
+  user-select: none;
+  cursor: default;
+}
+
+.tab-item[data-active=true] {
+  background-color: @bgFocus;
+  color: @textNormal;
+
 }

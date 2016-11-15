@@ -16,16 +16,18 @@ import Icon from '../../foundation/ui/Icon';
 export default class Primary extends Component {
 
   render() {
-    let Component = this.props.primary.list[this.props.primary.active].component;
+    let list = this.props.right ? this.props.primary.listRight : this.props.primary.listLeft;
+    let active = this.props.right ? this.props.primary.activeRight : this.props.primary.activeLeft;
+    let Component = list[active].component;
     return (
-      <div styleName="primary" style={{ width: this.props.width + 'px' }}>
+      <div styleName="primary" style={{ width: this.props.width + 'px' }} data-right={this.props.right ? 'true' : 'false'}>
         <div styleName="side">
           <div styleName="side-corner">&nbsp;</div>
-          {this.props.primary.list.map((panelParams, idx) => {
+          {list.map((panelParams, idx) => {
             return <SideItem
               key={panelParams.id}
               title={panelParams.displayName}
-              active={idx === this.props.primary.active}
+              active={idx === active}
             />
           })}
         </div>

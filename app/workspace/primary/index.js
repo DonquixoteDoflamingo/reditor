@@ -7,40 +7,55 @@ const register = createAction('workspace.primary.register');
 const unregister = createAction('workspace.primary.unregister');
 const reducer = createReducer({
   [register]: (state, payload) => {
-    console.log(state);
-    let list = state.list.slice(0);
+    let list;
+    let key;
+    if(payload.right) {
+      key = 'listRight';
+      list = state.listRight.slice(0);
+    } else {
+      key = 'listLeft';
+      list = state.listLeft.slice(0);
+    }
     list.push(payload);
     return {
       ...state,
-      list: list
+      [key]: list
     };
   },
   [unregister]: (state, id) => {
-    let list = state.list.slice(0);
+    let list = state.listLeft;
     for(let i=0; i<list; i++) {
       if(list[i].id === id) {
+        list = list.slice(0);
         list.splice(i, 1);
-        return state;
+        return {
+          ...state,
+          listLeft: list
+        };
       }
     }
-    return {
-      ...state,
-      list: list,
-    };
+    list = state.listRight;
+    for(let i=0; i<list; i++) {
+      if(list[i].id === id) {
+        list = list.slice(0);
+        list.splice(i, 1);
+        return {
+          ...state,
+          listRight: list
+        };
+      }
+    }
   }
 }, {
-  list: [],
-  active: 0
+  listLeft: [],
+  listRight: [],
+  activeLeft: 0,
+  activeRight: 0,
 });
 
 addReducer({ primary: reducer });
 
-export function openPrimaryPanel(id) {
-
-}
-
 export function registerPrimaryPanel(params) {
-  console.log(params);
   store.dispatch(register(params));
 }
 

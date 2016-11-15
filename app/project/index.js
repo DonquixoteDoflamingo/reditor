@@ -10,5 +10,6 @@ registerPrimaryPanel({
 registerPrimaryPanel({
   id: 'ProjectPanel2',
   displayName: 'Project',
+  right: true,
   component: ProjectPanel
 });

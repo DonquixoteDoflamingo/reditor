@@ -8,6 +8,10 @@
   min-width: 200px;
 }
 
+.primary[data-right=true] {
+  flex-direction: row-reverse;
+}
+
 .side {
   display: flex;
   flex-direction: column;
@@ -15,21 +19,27 @@
   border-right: 1px solid @borderNormal;
 }
 
+.primary[data-right=true] > .side {
+  border-left: 1px solid @borderNormal;
+  border-right: none;
+}
+
 .side-corner {
-  padding: 8px;
+  padding: @panelHeaderPadding;
   border-bottom: 1px solid @borderNormal;
   background-color: @bgLight;
+  z-index: 100;
 }
 
 .side-item {
   writing-mode: vertical-lr;
   padding: 12px 0px;
-  line-height: 2.6rem;
-  font-size: 1.2rem;
-  max-width: 2.4rem;
+  line-height: 2.4rem;
+  font-size: 1rem;
+  max-width: 2.2rem;
   color: @textNormal;
   box-sizing: border-box;
-  border-bottom: 1px solid @borderNormal;
+  border-top: 1px solid @borderNormal;
   transform: rotate(180deg);
   transform-origin: center;
   cursor: default;

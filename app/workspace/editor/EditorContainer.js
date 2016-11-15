@@ -13,11 +13,32 @@ import Icon from '../../foundation/ui/Icon';
   return {};
 })
 @CSSModules(styles)
-export default class Primary extends Component {
+export default class EditorContainer extends Component {
 
   render() {
     return (
       <div styleName="editor-container">
+        <div styleName="tabs">
+          <EditorTab title="test.js" active={true}/>
+          <EditorTab title="test.js"/>
+          <EditorTab title="test.js"/>
+        </div>
+      </div>
+    );
+  }
+
+}
+
+@CSSModules(styles)
+class EditorTab extends Component {
+
+  render() {
+    return (
+      <div
+        styleName="tab-item"
+        data-active={this.props.active ? 'true' : 'false'}
+      >
+        {this.props.title}
       </div>
     );
   }
