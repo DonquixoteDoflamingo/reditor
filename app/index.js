@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import Workspace from './workspace/Workspace';
+import './project';
 
 ReactDOM.render((
    <Provider store={store}>

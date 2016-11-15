@@ -1,5 +1,4 @@
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -12,7 +11,6 @@ module.exports = {
 	},
   plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
-		new ExtractTextPlugin('css/[name].css'),
     new HtmlWebpackPlugin({
   		filename: 'index.html',
   		template: 'app/index.html',
@@ -36,19 +34,36 @@ module.exports = {
 			loader: 'babel',
 		}, {
 			test: /\.css$/,
-			loader: ExtractTextPlugin.extract(
+			exclude: /(node_modules|bower_components)/,
+			loaders: [
         "style",
         "css?modules&importLoaders=1&localIdentName=[path][name]-[local]",
         "autoprefixer-loader"
-      )
+      ]
+		}, {
+			test: /\.css$/,
+      exclude: /app/,
+			loaders: [
+        "style",
+        "css",
+        "autoprefixer-loader"
+      ]
 		}, {
 			test: /\.less$/,
-			loader: ExtractTextPlugin.extract(
+			exclude: /(node_modules|bower_components)/,
+			loaders: [
         "style",
         "css?modules&importLoaders=1&localIdentName=[path][name]-[local]",
-        "autoprefixer-loader",
         "less"
-      )
+      ]
+		}, {
+			test: /\.less$/,
+			exclude: /app/,
+			loaders: [
+        "style",
+        "css",
+        "less"
+      ]
 		}, {
       test: /\.json$/,
       loader: 'json'

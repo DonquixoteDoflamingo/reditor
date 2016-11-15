@@ -1,0 +1,45 @@
+@import '../../theme/variables';
+
+.primary {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border: 1px solid @borderNormal;
+  min-width: 200px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-right: 1px solid @borderNormal;
+}
+
+.side-corner {
+  padding: 8px;
+  border-bottom: 1px solid @borderNormal;
+  background-color: @bgLight;
+}
+
+.side-item {
+  writing-mode: vertical-lr;
+  padding: 12px 0px;
+  line-height: 2.6rem;
+  font-size: 1.2rem;
+  max-width: 2.4rem;
+  color: @textNormal;
+  box-sizing: border-box;
+  border-bottom: 1px solid @borderNormal;
+  transform: rotate(180deg);
+  transform-origin: center;
+  cursor: default;
+  user-select: none;
+}
+
+.side-item[data-active=true] {
+  background-color: @bgDark;
+}
+
+.panel {
+  flex: 1;
+}

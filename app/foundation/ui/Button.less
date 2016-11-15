@@ -1,0 +1,14 @@
+@import '../../theme/variables';
+
+.button {
+  color: @textLabel;
+  background-color: @bgLight;
+  padding: 0.6em;
+  font-size: 1.2rem;
+  cursor: default;
+  user-select: none;
+}
+
+.button:hover {
+  background-color: lighten(@bgLight, 5%);
+}
